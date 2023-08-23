@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> calculateSpan(vector<int>& prices) {
+    vector<int> span;
+    span.push_back(-1);
+    stack<int> st;
+    st.push(5);
+    
+    for (int i = prices.size()-2; i>=0; i--) {
+        while (!st.empty() && prices[st.top()] <= prices[i]) {
+            st.pop();
+        }
+        int spa = st.empty() ? -1:st.top();
+        st.push(i);
+        span.push_back(spa);
+    }
+    reverse(span.begin(),span.end());
+    return span;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> v;
+    
+    for (int i = 0; i < n; i++) {
+        int x;
+        cin >> x;
+        v.push_back(x);
+    }
+    
+    vector<int> ans = calculateSpan(v);
+    
+    for (int val : ans) {
+        cout << val << " ";
+    }
+
+    return 0;
+}
