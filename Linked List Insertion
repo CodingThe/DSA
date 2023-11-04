@@ -1,0 +1,41 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+struct node{
+    int data;
+    node *next;
+    node(int x){
+        data=x;
+        next=NULL;
+    }
+};
+void travesal (node *head){
+    node *curr=head;
+    while(curr!=NULL){
+        cout<<curr->data<<" ";
+        curr=curr->next;
+    }
+};
+void recur(node *head){
+    if(head==NULL){
+        return;
+    }
+    cout<<head->data<<" ";
+    recur(head->next);
+};
+node* inse(node *head,int h){
+    node *temp=new node(h);
+    temp->next=head;
+    return temp;
+}
+int main() {
+    // Write C++ code here
+    node *head=new node(10);
+    head->next=new node(20);
+    head->next->next=new node(30);
+   travesal(head);
+   cout<<endl;
+   head=inse(head,100);
+   recur(head);
+    return 0;
+}
